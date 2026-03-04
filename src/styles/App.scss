@@ -1,0 +1,567 @@
+@use './mainpage/dashboard/Dashboard';
+html, body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    height: initial;
+    width: 100%;
+    overflow: hidden;
+}
+.App {
+    height: initial;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+// Header
+.window_header {
+    font-family: sans-serif;
+    background-color: #ffffff;
+    // box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    padding-left: 10px;
+    z-index: 100;
+    box-sizing: border-box;
+    border-bottom: 1px solid #E0E0E0;
+    .window_control_buttons{
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        height: 100%;
+        button{
+            height: 40px;
+            width: 40px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+             &:hover {
+                background-color: #f3f4f6;
+                border-radius: 4px;
+            }
+        }
+    }
+}
+.logo {
+    cursor: pointer;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    .logo_1 {
+        color: #FF7F50;
+        font-size: 30px;
+        font-weight: 700;
+    }
+    .logo_2 {
+        font-weight: 700;
+        font-size: 30px;
+        color: #565656;
+    }
+}
+.github_repository_button_header{
+	margin-left: auto;
+	margin-right: 20px;
+	height: 60px;
+  	width: 60px;
+	border-radius: 50%;
+	border: none;
+	background-color: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+// Main 
+.window{
+	display: flex;
+    flex-direction: column;
+    height: inherit;
+    width: 100%;
+    .window_body{
+        height: calc(100vh - 60px);
+        display: flex;
+        flex-direction: row;
+        overflow-y: auto;  
+        width: 100%; 
+        &::-webkit-scrollbar {
+        	width: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        .sidebar{
+            width: 80px;
+            height: 100%;
+            background-color: #f8f8f8;
+        }
+        .content {
+            height: 100%;
+            width: 100%;
+			display: flex;
+    		flex-direction: column;
+        }      
+    }
+}
+// documentation
+.documentation{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-areas: "left right";
+    .sidebar{
+        width: 100%;
+        height: 100%;
+        grid-area: left;
+        border-right: solid 1px #d5d5d5;
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px; 
+        padding-left: 30px;
+        padding-right: 30px;
+        overflow-y: auto;
+        box-sizing: border-box;
+        
+        .sidebar_section_title{
+            font-size: 15px;
+            line-height: 21px;
+            font-weight: 600;
+        }
+        .sidebar_button{
+            font-size: 14px;
+            line-height: 21px;      
+            font-weight: 500;
+            width: 100%;
+            display: flex;
+            align-self: start;
+            justify-self: center;
+            padding: 5px 15px;
+            background-color: transparent;
+            border: solid 2px transparent;
+            cursor: pointer;
+            box-sizing: border-box;
+            &:hover{
+                border: solid 2px #FF7F50;
+                border-radius: 5px;
+            }
+        }
+        .divider{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            background-color: #d5d5d5;
+            height: 1px;
+            justify-self: center;
+            align-self: center;
+        }
+    }
+    .content{
+        grid-area: right;
+    }
+}
+// NAV
+.header_navigation {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    }         
+   .dropdown_container {
+        background-color: transparent;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        height: 100%;   
+        box-sizing: border-box;
+        
+    }
+    .dropdown_button{
+        height: 100%; 
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 14px;
+        flex-shrink: 0;
+        border-bottom: 3px solid transparent;
+        box-sizing: border-box;
+        &.open {
+            border-bottom: 3px solid #FF7F50;
+        }
+        &.selected {
+            border-bottom: 3px solid #FF7F50
+        }
+        &:hover{
+            background-color: #f5f5f5;
+        }
+    }
+    .dropdown_button_label {
+        font-size: 15px;
+        font-weight: 500;
+        white-space: nowrap;
+        color: #000000;
+    }
+    .dropdown_panel {
+        position: absolute;
+        top: 120%;
+        left: 0;
+        right: 0;
+        width: 1000px;
+        height: 300px;
+        z-index: 40;
+		background-color: #ffffff;
+        box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
+        .installation_panel{
+			width: 100%;
+			height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            grid-template-areas: "left middle right";
+            .window_installation_section{
+                grid-area: left;
+                .window_installation_title{
+                    background-color: #FF7F50;
+                    justify-content: center;
+                    padding: 20px 0px;
+                    color: #ffffff;
+                    font-size: 15px;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                }
+            }
+			.divider{
+				grid-area: middle;
+                width: 1px;
+                background-color: #d5d5d5;
+				height: 100%;
+				justify-self: center;
+				align-self: center;
+			}
+            .linux_installation_section{
+                grid-area: right;
+                .linux_installation_title{
+                    background-color: #FF7F50;
+                    justify-content: center;
+                    padding: 20px 0px;
+                    color: #ffffff;
+                    font-size: 15px;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                }
+            }
+        }
+        .about_panel{
+        	width: 100%;
+			height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 0.5px 1fr;
+            grid-template-areas: "left middle right";
+			.about_panel_actions{
+                padding-top: 20px;
+				grid-area: left;
+				display: flex;
+				flex-direction: column;
+				justify-content: start;
+				align-items: center;
+				gap: 5px;
+				button{
+                    gap: 5px;
+                    padding: 10px 15px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: start;
+					width: 90%;
+					border: none;
+					background-color: #ffffff;
+					cursor: pointer;
+					&:hover {
+						background-color: #e0e0e0;
+					}
+                    .title{
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+                    .info{
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: #555555;
+                        margin-top: 5px;
+                    }
+				}
+			}
+			.divider{
+				grid-area: middle;
+				border-left: 0.5px solid #a6a6a6;
+				height: 80%;
+				justify-self: center;
+				align-self: center;
+        	}
+			.blog{
+				grid-area: right;
+    		}
+
+		}
+	}
+
+    .installation {
+        padding: 20px 300px;
+        height: 100vh;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+        position: relative;
+        .toast_notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: toastSlideIn 0.3s ease-out;
+            font-size: 14px;
+            font-weight: 500;
+    
+            svg {
+                color: #4caf50;
+                flex-shrink: 0;
+            }
+    
+            span {
+                white-space: nowrap;
+            }
+        }
+    
+        @keyframes toastSlideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .installation_title {
+            display:flex;
+            font-size: 40px;
+            font-weight: 700;
+            color: #FF7F50;
+            padding-bottom: 20px;
+            box-sizing: border-box;
+        }
+        
+        .installation_selectors {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            .selector_group {
+                position: relative;
+            }
+            
+            .selector_label {
+                font-size: 15px;
+                color: #666;
+                font-weight: 500;
+            }
+            
+            .selector_connector {
+                font-size: 15px;
+                color: #666;
+                font-weight: 500;
+            }
+        }
+        
+        .installation_info_banner {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 5px;
+            background-color: #ffe5dc;
+            border-left: 4px solid #FF7F50;
+            padding: 5px 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            .installation_info_banner_icon {
+                background-color: #FF7F50;
+                padding: 1px 5px;
+                border-radius: 2px;
+                font-size: 10px;
+                color: #ffffff;
+            }
+            .installation_info_banner_info {
+                font-size: 13px;
+                color: #565656;
+            }
+        }
+        
+        .installation_code_block {
+            background-color: #1e1e1e;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            
+            .code_block_header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 16px;
+                background-color: #252526;
+                border-bottom: 1px solid #3e3e42;
+                
+                .code_block_label {
+                    font-size: 12px;
+                    color: #858585;
+                }
+                
+                .copy_button {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 6px 12px;
+                    background-color: transparent;
+                    border: 1px solid #3e3e42;
+                    border-radius: 4px;
+                    color: #cccccc;
+                    cursor: pointer;
+                    font-size: 13px;
+                    
+                    &:hover {
+                        background-color: #2a2d2e;
+                    }
+                }
+            }
+            
+            .code_block_content {
+                padding: 20px;
+                margin: 0;
+                font-family: 'Consolas', 'Monaco', monospace;
+                font-size: 14px;
+                line-height: 1.6;
+                color: #d4d4d4;
+                overflow-x: auto;
+                
+                .code_line {
+                    margin-bottom: 4px;
+                    
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    
+ 
+    .dropdown_wrapper {
+        position: relative;
+        .dropdown_button {
+            width: 150px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 15px;
+            background-color: #ffffff;
+            border: 2px solid #d1d5db;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            justify-content: space-between;
+            white-space: nowrap;
+            
+            &:hover {
+                border-color: #FF7F50;
+            }
+            
+            &.open {
+                border-color: #FF7F50;
+                box-shadow: 0 0 0 3px rgba(255, 127, 80, 0.1);
+            }
+            
+            .dropdown_arrow {
+                transition: transform 0.2s;
+                
+                &.rotated {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        
+        .dropdown_menu {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+            max-height: 300px;
+            overflow-y: auto;
+            
+            .dropdown_item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                width: 100%;
+                padding: 10px 16px;
+                background-color: transparent;
+                border: none;
+                text-align: left;
+                cursor: pointer;
+                font-size: 14px;
+                
+                &:hover {
+                    background-color: #f3f4f6;
+                }
+                
+                &.selected {
+                    background-color: #fff5f0;
+                    color: #FF7F50;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
