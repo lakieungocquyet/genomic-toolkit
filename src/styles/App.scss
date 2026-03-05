@@ -5,6 +5,11 @@
     src: url("./fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Google-Sans-google-fonts";
+    src: url("./fonts/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf") format("truetype");
+}
+
 :root {
     // Background colors
     --background-color-1: #F9F8F6; // main background
@@ -16,11 +21,11 @@
     --border-color-1: #e6e6e6;
     // Text colors
     --text-color-1: #ffffff;
-    --text-color-2: #cccccc;
+    --text-color-2: #808080;
 }
 
 html, body {
-    font-family: "Roboto-google-fonts", sans-serif;
+    font-family: "Google-Sans-google-fonts", "Roboto-google-fonts", sans-serif;
     margin: 0;
     padding: 0;
     height: initial;
@@ -36,7 +41,6 @@ html, body {
 
 // Header
 .window_header {
-    font-family: sans-serif;
     background-color: #ffffff;
     height: 60px;
     display: flex;

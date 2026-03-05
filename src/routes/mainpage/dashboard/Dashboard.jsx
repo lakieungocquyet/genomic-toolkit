@@ -46,16 +46,17 @@ function Dashboard() {
     };
     useEffect(() => {
         loadSystemInfo();
-        const interval = setInterval(loadSystemInfo, 3000);
+        const interval = setInterval(loadSystemInfo, 1000);
         return () => clearInterval(interval);
     }, []);
 
     const memory_usage_percentage = total_memory
-        ? ((used_memory / total_memory) * 100).toFixed(1)
+        ? ((used_memory / total_memory) * 100).toFixed(2)
         : 0;
 
     return (
         <div className="dashboard">
+            <span className="dashboard_label"> Dashboard </span>
             <div className="monitoring">
                 <div className="cpu">
                     <span className="cpu_label"> System CPU </span>
@@ -64,7 +65,7 @@ function Dashboard() {
                             <div className="cpu_usage_info_label"> Global usage: </div>
                             <div className="cpu_usage_info_value" > {global_usage.toFixed(2)}% </div>
                         </div>
-                        <div className="cpu_cores_info"> used of {core_count} cores </div>
+                        <div className="cpu_total_cores_info"> used of {core_count} cores </div>
                         <button className="explore_details_cpu_info_button" onClick={() => set_show_cores(!show_cores)}>
                             {show_cores ? 
                                 (<svg width="15px" height="15px" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M16.9,13.4l-4.2-4.2l0,0c-0.4-0.4-1-0.4-1.4,0l-4.2,4.2c-0.4,0.4-0.4,1,0,1.4s1,0.4,1.4,0l3.5-3.5l3.5,3.5c0.2,0.2,0.4,0.3,0.7,0.3l0,0c0.3,0,0.5-0.1,0.7-0.3C17.3,14.4,17.3,13.8,16.9,13.4z"></path></g></svg>) : 
@@ -74,29 +75,55 @@ function Dashboard() {
                     </div>
                     {show_cores && (
                         <div className="details_cpu_info">
-                        {cores.map((usage, index) => (
-                            <div key={index} className="core">
-                                <span>Core {index + 1}: </span>
-                                <span>{usage.toFixed(2)}%</span>
-                            </div>
-                        ))}
-                    </div>
+                            {cores.map((usage, index) => {
+                                let color = "#4caf50";
+
+                                if (usage > 80) color = "#ff3b30";
+                                else if (usage > 60) color = "#ff9500";
+                                else if (usage > 30) color = "#ffd60a";
+                            
+
+                            return (
+                                <div key={index} className="core">
+                                    <div className="core_header">
+                                        <span className="core_label">CPU {index + 1}</span>
+                                        <span className="core_value" style={{ color: color }}>
+                                            {usage.toFixed(0)}%
+                                        </span>
+                                    </div>
+                                    <div className="core_bar">
+                                        <div className="core_bar_fill" style={{ width: `${usage}%`, background: color }}></div>
+                                    </div>
+                                </div>
+                            )})}
+                        </div>
                     )
                 }
                     
                 </div>
                 <div className="memory">
                     <span className="memory_label"> System Memory </span>
-                    <span> {memory_usage_percentage}% </span>
-                    <span> {(used_memory / 1024 / 1024 / 1024).toFixed(2)} GB / {(total_memory / 1024 / 1024 / 1024).toFixed(2)} GB </span>
+                    <div className="memory_info">
+                        <div className="memory_usage_info">
+                            <div className="memory_usage_info_label"> Global usage: </div>
+                            <div className="memory_usage_info_value"> {memory_usage_percentage}% </div>
+                        </div>
+                        <div className="memory_total_ram_info">
+                            {(used_memory / 1024 / 1024 / 1024).toFixed(2)} GB used of {(total_memory / 1024 / 1024 / 1024).toFixed(2)} GB
+                        </div>
+                    </div>
                 </div>
                 <div className="disk">
                     <span className="disk_label"> System Disk </span>
-                    <span>{disk_percent.toFixed(1)}%</span>
-
-                    <span>
-                        {(used_disk / 1024 / 1024 / 1024).toFixed(2)} GB / {(total_disk / 1024 / 1024 / 1024).toFixed(2)} GB
-                    </span>
+                    <div className="disk_info">
+                        <div className="disk_usage_info">
+                            <div className="disk_usage_info_label"> Global usage: </div>
+                            <div className="disk_usage_info_value"> {disk_percent.toFixed(2)}% </div>
+                        </div>
+                        <div className="disk_total_space_info">
+                            {(used_disk / 1024 / 1024 / 1024).toFixed(2)} GB used of {(total_disk / 1024 / 1024 / 1024).toFixed(2)} GB
+                        </div>
+                    </div>
                 </div>
             </div>
 
