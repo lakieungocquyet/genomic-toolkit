@@ -1,6 +1,26 @@
 @use './mainpage/dashboard/Dashboard';
+
+@font-face {
+    font-family: "Roboto-google-fonts";
+    src: url("./fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
+}
+
+:root {
+    // Background colors
+    --background-color-1: #F9F8F6; // main background
+    --background-color-2: #ffffff; 
+    --background-color-3: #c8e0ff;
+
+
+    // Border colors
+    --border-color-1: #e6e6e6;
+    // Text colors
+    --text-color-1: #ffffff;
+    --text-color-2: #cccccc;
+}
+
 html, body {
-    font-family: sans-serif;
+    font-family: "Roboto-google-fonts", sans-serif;
     margin: 0;
     padding: 0;
     height: initial;
@@ -18,7 +38,6 @@ html, body {
 .window_header {
     font-family: sans-serif;
     background-color: #ffffff;
-    // box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
     height: 60px;
     display: flex;
     flex-direction: row;
@@ -107,6 +126,7 @@ html, body {
             width: 80px;
             height: 100%;
             background-color: #f8f8f8;
+            border-right: 1px solid var(--border-color-1);
         }
         .content {
             height: 100%;

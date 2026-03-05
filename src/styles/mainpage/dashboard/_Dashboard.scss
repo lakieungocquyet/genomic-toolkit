@@ -1,5 +1,5 @@
 .dashboard {
-    // background-color: #666;
+    background-color: var(--background-color-1);
     height: 100%;
     width: 100%;
     display: flex;
@@ -16,13 +16,77 @@
             border-radius: 10px;
             display: flex;
             flex-direction: column;
-            background-color: #ccc;
-            width: 300px;
+            background-color: var(--background-color-2);
+            width: 350px;
+            height: 100%;
             padding: 20px 20px;
-            gap: 10px;
+            gap: 5px;
+            border: 1px solid var(--border-color-1);
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.03);
+            position: relative;
             .cpu_label {
-                font-size: 20px;
-                font-weight: 500;
+                font-size: 25px;
+                font-weight: 600;
+                width: fit-content;
+                border-radius: 10px;
+                padding: 5px 10px;
+                border: 1px solid var(--border-color-1);
+            }
+            .cpu_info {
+                padding: 5px 10px;
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                .cpu_usage_info{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    .cpu_usage_info_label {
+                        font-size: 13px;
+                        font-weight: 400;
+                    }
+                    .cpu_usage_info_value {
+                        width: 130px;
+                        font-size: 40px;
+                        font-weight: 500;
+                        text-align: right; 
+                    }
+                }
+                .cpu_cores_info {
+                    width: 120px;
+                    font-size: 15px;
+                    font-weight: 400;
+                    position: absolute;
+                    bottom: 11px;
+                    left: 150px;
+                }
+                .explore_details_cpu_info_button{
+                    height: 25px;
+                    width: 40px;
+                    border: 1px solid var(--border-color-1);
+                    border-radius: 5px;
+                    background-color: var(--background-color-3);
+                    cursor: pointer;
+                    margin-left: auto;
+                    margin-top: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    &:hover {
+                        background-color: var(--background-color-2);
+                    }
+                }
+            }
+            .details_cpu_info{
+                border-radius: 10px;
+                width: 350px;
+                position: absolute;
+                bottom: -370px;
+                left: 0;
+                background-color: var(--background-color-2);
+                padding: 20px 20px;
+                border: 1px solid var(--border-color-1);
+                box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.03);
             }
         }
         .memory {
