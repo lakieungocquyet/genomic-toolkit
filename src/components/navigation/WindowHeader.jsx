@@ -2,8 +2,8 @@ import { getCurrentWindow} from "@tauri-apps/api/window";
 import { LogicalSize, PhysicalSize} from '@tauri-apps/api/dpi';
 import { useState, useRef } from "react";
 import OpenUrl from "../../utils/OpenUrl.jsx";
-import HeaderNavigation from './HeaderNavigation.jsx';
-import GithubIcon from "../icon/GithubIcon.jsx";
+
+import GithubIcon from "../icons/GithubIcon.jsx";
 import Logo from './Logo.jsx'
 
 function WindowHeader() {
@@ -33,7 +33,7 @@ function WindowHeader() {
 	return (
 		<div className="window_header" data-tauri-drag-region>
 			<Logo data-tauri-drag-region></Logo>
-			<HeaderNavigation></HeaderNavigation>
+
 			<button 
 				className="github_repository_button_header" 
 				onClick={() => OpenUrl("https://github.com/lakieungocquyet/varkit")}>

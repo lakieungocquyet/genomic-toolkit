@@ -21,77 +21,83 @@
         gap: 20px;
         align-items: center;
         .cpu {
-            border-radius: 10px;
+            width: 450px;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            background-color: var(--background-color-2);
-            width: 400px;
-            height: 100%;
-            padding: 20px 20px;
-            gap: 5px;
-            border: 1px solid var(--border-color-1);
-            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.03);
-            position: relative;
-            box-sizing: border-box;
-            .cpu_label {
-                font-size: 22px;
-                font-weight: 600;
-                width: fit-content;
+            gap: 20px;
+            
+            .general_cpu_info_container {
                 border-radius: 10px;
-                padding: 5px 10px;
-                border: 1px solid var(--border-color-1);
-            }
-            .cpu_info {
-                padding: 5px 10px;
                 display: flex;
-                flex-direction: row;
-                position: relative;
-                .cpu_usage_info{
+                flex-direction: column;
+                background-color: var(--background-color-2);
+                width: 100%;
+                height: 100%;
+                padding: 20px 20px;
+                gap: 5px;
+                border: 1px solid var(--border-color-1);
+                box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.03);
+                box-sizing: border-box;
+                .cpu_label {
+                    font-size: 22px;
+                    font-weight: 600;
+                    width: fit-content;
+                    border-radius: 10px;
+                    padding: 5px 10px;
+                    border: 1px solid var(--border-color-1);
+                }
+                .general_cpu_info {
+                    padding: 5px 10px;
                     display: flex;
-                    flex-direction: column;
-                    gap: 15px;
-                    .cpu_usage_info_label {
+                    flex-direction: row;
+                    position:relative;
+                    .cpu_usage_info{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                        .cpu_usage_info_label {
+                            font-size: 13px;
+                            font-weight: 400;
+                        }
+                        .cpu_usage_info_value {
+                            width: 120px;
+                            font-size: 35px;
+                            font-weight: 500;
+                            text-align: right; 
+                        }
+                    }
+                    .cpu_total_cores_info {
+                        width: 120px;
                         font-size: 13px;
                         font-weight: 400;
+                        position: absolute;
+                        bottom: 11px;
+                        left: 145px;
                     }
-                    .cpu_usage_info_value {
-                        width: 120px;
-                        font-size: 35px;
-                        font-weight: 500;
-                        text-align: right; 
-                    }
-                }
-                .cpu_total_cores_info {
-                    width: 120px;
-                    font-size: 13px;
-                    font-weight: 400;
-                    position: absolute;
-                    bottom: 11px;
-                    left: 145px;
-                }
-                .explore_details_cpu_info_button{
-                    height: 25px;
-                    width: 40px;
-                    border: 1px solid var(--border-color-1);
-                    border-radius: 5px;
-                    background-color: var(--background-color-3);
-                    cursor: pointer;
-                    margin-left: auto;
-                    margin-top: auto;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    &:hover {
-                        background-color: var(--background-color-2);
+                    .explore_details_cpu_info_button{
+                        height: 25px;
+                        width: 40px;
+                        border: 1px solid var(--border-color-1);
+                        border-radius: 5px;
+                        background-color: var(--background-color-3);
+                        cursor: pointer;
+                        margin-left: auto;
+                        margin-top: auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        &:hover {
+                            background-color: var(--background-color-2);
+                        }
                     }
                 }
             }
-            .details_cpu_info{
+            
+            
+            .details_cpu_info_container{
                 border-radius: 10px;
-                width: 400px;
-                position: absolute;
-                bottom: -410px;
-                left: 0;
+                width: 100%;
                 background-color: var(--background-color-2);
                 padding: 20px 20px;
                 border: 1px solid var(--border-color-1);
@@ -109,7 +115,8 @@
                         grid-area: left;
                         display:flex;
                         font-size:14px;
-                        gap: 10px;
+                        gap: 5px;
+                        align-items: center;
                         .core_label{
                             width: 50px;
                             color:#000000;
@@ -124,9 +131,10 @@
                     .core_bar{
                         grid-area: right;
                         width:100%;
-                        height:8px;
+                        height:10px;
                         background:rgba(255,255,255,0.1);
                         border-radius:1px;
+                        border: 1px solid var(--border-color-1);    
                         overflow:hidden;
                         .core_bar_fill{
                             height:100%;
@@ -150,7 +158,7 @@
             display: flex;
             flex-direction: column;
             background-color: var(--background-color-2);
-            width: 400px;
+            width: 450px;
             height: 100%;
             padding: 20px 20px;
             gap: 5px;
@@ -196,55 +204,141 @@
                 }
             }
         }
-        .disk {
-            border-radius: 10px;
+        .disks {
+            width: 450px;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            background-color: var(--background-color-2);
-            width: 400px;
-            height: 100%;
-            padding: 20px 20px;
-            gap: 5px;
-            border: 1px solid var(--border-color-1);
-            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.03);
-            box-sizing: border-box;
-            .disk_label {
-                font-size: 22px;
-                font-weight: 600;
-                width: fit-content;
+            gap: 20px;
+            .general_disk_info_container {
                 border-radius: 10px;
-                padding: 5px 10px;
-                border: 1px solid var(--border-color-1);
-            }
-            .disk_info{
-                padding: 5px 10px;
                 display: flex;
-                flex-direction: row;
-                position: relative;
-                .disk_usage_info{
+                flex-direction: column;
+                background-color: var(--background-color-2);
+                width: 100%;
+                height: 100%;
+                padding: 20px 20px;
+                gap: 5px;
+                border: 1px solid var(--border-color-1);
+                box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.03);
+                box-sizing: border-box;
+                margin: 0;
+                .disk_label {
+                    font-size: 22px;
+                    font-weight: 600;
+                    width: fit-content;
+                    border-radius: 10px;
+                    padding: 5px 10px;
+                    border: 1px solid var(--border-color-1);
+                }
+                .general_disk_info{
+                    padding: 5px 10px;
                     display: flex;
-                    flex-direction: column;
-                    gap: 15px;
-                    .disk_usage_info_label {
+                    flex-direction: row;
+                    position: relative;
+                    .disk_usage_info{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                        .disk_usage_info_label {
+                            font-size: 13px;
+                            font-weight: 400;
+                        }
+                        .disk_usage_info_value {
+                            width: 120px;
+                            font-size: 35px;
+                            font-weight: 500;
+                            text-align: right;  
+                        }
+
+                    }
+                    .disk_total_space_info {
+                        width: 180px;
                         font-size: 13px;
                         font-weight: 400;
+                        position: absolute;
+                        bottom: 11px;
+                        left: 145px;
                     }
-                    .disk_usage_info_value {
-                        width: 120px;
-                        font-size: 35px;
-                        font-weight: 500;
-                        text-align: right;  
+                    .explore_details_disk_info_button {
+                        height: 25px;
+                        width: 40px;
+                        border: 1px solid var(--border-color-1);
+                        border-radius: 5px;
+                        background-color: var(--background-color-3);
+                        cursor: pointer;
+                        margin-left: auto;
+                        margin-top: auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        &:hover {
+                            background-color: var(--background-color-2);
+                        }
                     }
+                }
+            }
+            
+            
+            .details_disk_info_container{
+                border-radius: 10px;
+                width: 100%;
+                background-color: var(--background-color-2);
+                padding: 20px 20px;
+                border: 1px solid var(--border-color-1);
+                box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.03);
+                gap: 5px;
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+                .disk{
+                    display: grid;
+                    grid-template-columns: 220px 1fr;
+                    grid-template-areas: "left right";
+                    align-items: center;
+                    .disk_header{
+                        grid-area: left;
+                        display:flex;
+                        align-items: center;
+                        font-size:14px;
+                        gap: 5px;
+                        .disk_label{
+                            width: 25px;
+                            color:#000000;
+                            font-weight:500;
+                        }
+                        .disk_space{
+                            width: 140px;
+                        }
+                        .disk_value{
+                            width: 30px;
+                            font-weight:500;
+                            text-align: right;
+                        }
+                    }
+                    .disk_bar{
+                        grid-area: right;
+                        width:100%;
+                        height:10px;
+                        background:rgba(255,255,255,0.1);
+                        border-radius:1px;
+                        border: 1px solid var(--border-color-1);    
+                        overflow:hidden;
+                        .disk_bar_fill{
+                            height:100%;
+                            border-radius:1px;
+                            transition:width 0.35s ease;
+                        }
+                    }
+                }
 
-                }
-                .disk_total_space_info {
-                    width: 180px;
-                    font-size: 13px;
-                    font-weight: 400;
-                    position: absolute;
-                    bottom: 11px;
-                    left: 145px;
-                }
+
+
+
+
+
+
+
             }
         }
     }

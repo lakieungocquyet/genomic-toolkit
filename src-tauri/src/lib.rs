@@ -1,6 +1,15 @@
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 use sysinfo::{System, Disks};
 use std::{thread, time::Duration};
+use serde::Serialize;
+
+#[derive(Serialize)]
+struct DiskInfo {
+    name: String,
+    used: u64,
+    total: u64,
+    percent: f32,
+}
 
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -39,19 +48,34 @@ fn get_cpu_info() -> (usize, f32, Vec<f32>) {
 }
 
 #[tauri::command]
-fn get_disk_info() -> (u64, u64, f32) {
+fn get_disk_info() -> (u64, u64, f32, Vec<DiskInfo>) {
     let mut sys: System = System::new_all();
     sys.refresh_all();
 
     let mut total_sum: u64 = 0;
     let mut used_sum: u64 = 0;
     let disks: Disks = Disks::new_with_refreshed_list();
+    let mut disk_list: Vec<DiskInfo> = Vec::new();
+
     for disk in &disks {
         let total: u64 = disk.total_space();
         let available: u64 = disk.available_space();
+        let used: u64 = total - available;
 
         total_sum += total;
-        used_sum += total - available;
+        used_sum += used;
+
+        let percent: f32 = if total > 0 {
+            (used as f32 / total as f32) * 100.0
+        } else {
+            0.0
+        };
+        disk_list.push(DiskInfo {
+            name: disk.mount_point().to_string_lossy().to_string(),
+            used,
+            total,
+            percent,
+        });
     }
 
     let percent: f32 = if total_sum > 0 {
@@ -60,7 +84,7 @@ fn get_disk_info() -> (u64, u64, f32) {
         0.0
     };
 
-    (used_sum, total_sum, percent)
+    (used_sum, total_sum, percent, disk_list)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]

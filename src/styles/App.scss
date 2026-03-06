@@ -1,5 +1,6 @@
 @use './mainpage/dashboard/Dashboard';
-
+@use './mainpage/launch/Launch';
+@use './mainpage/remote_explorer/RemoteExplorer';
 @font-face {
     font-family: "Roboto-google-fonts";
     src: url("./fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
@@ -13,15 +14,15 @@
 :root {
     // Background colors
     --background-color-1: #F9F8F6; // main background
-    --background-color-2: #ffffff; 
-    --background-color-3: #c8e0ff;
+    --background-color-2: #ffffff; // white 
+    --background-color-3: #dfdfdf;
 
 
     // Border colors
     --border-color-1: #e6e6e6;
     // Text colors
     --text-color-1: #ffffff;
-    --text-color-2: #808080;
+    --text-color-2: #000000;
 }
 
 html, body {
@@ -127,10 +128,68 @@ html, body {
             background: #a8a8a8;
         }
         .sidebar{
+            box-sizing: border-box;
             width: 80px;
             height: 100%;
-            background-color: #f8f8f8;
-            border-right: 1px solid var(--border-color-1);
+            background-color: var(--background-color-2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .dashboard_button {
+                width: 100%;
+                height: 70px;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--background-color-2);
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                &:hover {
+                    background-color: var(--background-color-3);
+                }
+                &.selected {
+                    background-color: var(--background-color-1);
+                    border-left: 3px solid #FF7F50;
+                }
+            }
+            .launch_button {
+                width: 100%;
+                height: 70px;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--background-color-2);
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                &:hover {
+                    background-color: var(--background-color-3);
+                }
+                &.selected {
+                    background-color: var(--background-color-1);
+                    border-left: 3px solid #FF7F50;
+                }
+            }
+            .remote_explorer_button {
+                width: 100%;
+                height: 70px;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--background-color-2);
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                &:hover {
+                    background-color: var(--background-color-3);
+                }
+                &.selected {
+                    background-color: var(--background-color-1);
+                    border-left: 3px solid #FF7F50;
+                }
+            }
+            
         }
         .content {
             height: 100%;

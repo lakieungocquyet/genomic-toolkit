@@ -27,7 +27,7 @@ function HeaderNavigation () {
                     className={`dropdown_button ${selectedSection === "home" ? "selected" : "" } ${openSection === "home" ? "open" : ""}`}
                     onClick={() => {
                         setSelectedSection("home");
-                        navigate("/home")
+                        navigate("/dashboard")
                     }} 
                     onMouseEnter={() => open("home")} 
                     onMouseLeave={close}

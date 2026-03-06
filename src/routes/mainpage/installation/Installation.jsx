@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import Dropdown from "../../../components/ui/Dropdown.jsx";
 import { generateInstallationCommands } from "../../../utils/InstallationCommands.js";
-import DockerIcon from '../../../components/icon/DockerIcon.jsx'
-import LinuxIcon from '../../../components/icon/LinuxIcon.jsx'
-import WindowsIcon from "../../../components/icon/WindowsIcon.jsx";
-import PythonIcon from "../../../components/icon/PythonIcon.jsx";
-import GitIcon from '../../../components/icon/GitIcon.jsx'
+import DockerIcon from '../../../components/icons/DockerIcon.jsx'
+import LinuxIcon from '../../../components/icons/LinuxIcon.jsx'
+import WindowsIcon from "../../../components/icons/WindowsIcon.jsx";
+import PythonIcon from "../../../components/icons/PythonIcon.jsx";
+import GitIcon from '../../../components/icons/GitIcon.jsx'
 
 function Installation() {
     const [version, setVersion] = useState("latest");
